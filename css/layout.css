@@ -1,0 +1,28 @@
+html,
+body {
+    background-color: #fffaf6;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+h1 {
+    text-align: center;
+    color: #527298;
+    font-size: 40px;
+}
+
+.container1 {
+    position: absolute;
+    top: 558px;
+    left: 165px;
+
+}
+
+p {
+    color: #527298;
+    font-size: 16px;
+}
+
+.aligncenter {
+    text-align: center;
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Suicide Deaths in Australia (2020)",
+  "width": 400,
+  "height": 400,
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/collc07/Week10Homework/main/ne_1.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/collc07/Week10Homework/main/suicide2020_map_final.csv"
+            },
+            "key": "State",
+            "fields": ["Deaths"]
+          }
+        },
+        {"calculate": "datum.Deaths", "as": "Total Deaths"}
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Total Deaths",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"}
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "Total Deaths", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/collc07/Week10Homework/main/ne_1.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_ocean"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightblue", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/collc07/Week10Homework/main/ne_1.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_15"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "darkgray"}
+    }
+  ]
+}
